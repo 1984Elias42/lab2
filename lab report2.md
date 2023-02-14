@@ -1,37 +1,27 @@
 # Lab report 2
 ## 1. StringServer
 I write a a web server called StringServer that show string according to the path we type in, and here is my code.\
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/VScode%20screenshot.jpg)
-## 2. Remotely Connecting
-My computer's system is __windows__, so I installed git on my computer first. If your computer's system is __windows__ just like mine, you will also need to install git on your computer. And here is the download link for git. [Link](https://gitforwindows.org/) \
-Then open VScode and press __ctrl__ with __`__ to open the terminal.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%202.png)
-Then press __Ctrl__ with __Shift__ with __P__ to Open the command palette and type in _Select Default Profile_.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%207.jpg)
-Then select _Git Bash_.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%208.jpg)
-Then Click on the __+__ in the terminal window and wait for couple seconds. And you will see something like this.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%206.jpg)
-Now we just finished our setup and then we can try to use ssh. Open a terminal in VScode and type in _$ ssh cs15lwi23avn@ieng6.ucsd.edu_ but replace avn with __YOUR ID__.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2010.jpg)
-Then press enter and type in your password. You will see something like this.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2011.jpg)
-## 3. Run Some Commands
-Now we can try to run some commands like cd, ls, pwd, mkdir, and cp a few times in different ways.\
-Here is the list of some commands to try:\
-cd ~\
-cd\
-ls -lat\
-ls -a\
-ls <directory> where <directory> is /home/linux/ieng6/cs15lwi23/cs15lwi23abc, where the abc is one of the other group members’ username\
-cp /home/linux/ieng6/cs15lwi23/public/hello.txt ~/\
-cat /home/linux/ieng6/cs15lwi23/public/hello.txt\
-__Let me show you some results of these commands.__ \
-When I type in __pwd__, it will show me the current working directory just like this.\
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2012.png) \
-When I type in __cd perl5__, it will change my current working directory to perl5 and I can use pwd to check if it works. Just like this.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2013.png)\
-When I type in cd ~,it will change my current working directory to home directory and like before, I will use pwd to check if it works.
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2014.png) \
-At the end, let me show you something interesting. I type in __ls /home/linux/ieng6/cs15lwi23/cs15lwi23awg__ to list my classmate's files and folders in his home directory. But it showed __"can not open directory, permission denied."__ It seems that if I want to get access to someone else’s directory, I have to get permission first. \
-![Image](https://github.com/1984Elias42/cse15l-lab-reports/blob/main/lab1%2015.png)
+![Image](https://github.com/1984Elias42/lab2/blob/main/lab2%201.jpg)
+Then I type in the request __/add-message?s=hello__ and here is how result looks like.\
+![Image](https://github.com/1984Elias42/lab2/blob/main/lab2%202.jpg)
+Then I type in the request __/add-message?s=How are you__ and here is how result looks like.\
+![Image](https://github.com/1984Elias42/lab2/blob/main/lab2%203.jpg)
+When run these request,\
+__First__ I call the main to create the web server.\
+__Then__ I called __String handleRequest(URI url)__ in my code. This method works according to the url I type in as the request. I check if there is __/add__ in my path by contains method to add the string. If there is __/add__ in my path then I splite query by __=__ and get the string by get the element in parameters. Then I return that string.
+## 2. Bugs
+The reverseInPlace method in __ArrayExamples.java__ has bugs. The reason why it can't work properly is because when we go through the for loop, where array was keeping being updated so when we try to operate the old first half of the array, the data inside it is not the original data that we need. That's why this method has a bug. The input we type in which is the array will not casue the problem. To fix this bug, we will creat a deep copy for the input array at first as an reference. And here is my fixed code: 
+```
+# fixed code
+static void reverseInPlace(int[] arr) {
+    int[] arrref = new int[arr.length];
+    for(int i=0; i<arr.length; i++){
+      arrref[i]=arr[i];
+    }
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arrref[arr.length - i - 1];
+    }
+  }
+```
+## 3. Conclusion
+Before these 2 labs, I knew nothing about how to create a web server. This is the first time I learn how to create a web server by coding. And learned how to write some codes to do some requests in url. That's the first step for me to do something about the webserver and I think it is very useful.
